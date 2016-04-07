@@ -8,6 +8,7 @@ import ceylon.collection {
 import ceylon.language {
     createMap=map
 }
+
 import com.vasileff.ceylon.structures.internal {
     eq,
     forward,
@@ -15,8 +16,6 @@ import com.vasileff.ceylon.structures.internal {
     SequentialList,
     SequentialMutableList
 }
-
-// TODO and List<Key->Item> entries ?
 
 "An implementation of [[ListMultimap]] that supports deterministic
  iteration order for both keys and items. The iteration order is preserved
@@ -384,6 +383,32 @@ class LinkedListMultimap<Key, Item>
         iterator() => keys.map((k) => k -> outer.get(k)).iterator();
 
         get(Object key) => if (defines(key), is Key key) then outer.get(key) else null;
+    };
+
+    shared
+    MutableList<Key->Item> entries => object extends Object()
+            satisfies SequentialMutableList<Node, Key->Item> {
+
+        getElement(Node node) => node.entry;
+
+        nodeFromFirst(Integer index) => outer.nodeFromFirst(index);
+
+        nodeIterable(Direction direction, Integer startIndex)
+            =>  nodes(direction, startIndex);
+
+        size => outer.size;
+
+        insertNode(Key->Item element, Node? location)
+            =>  outer.addNode(element.key, element.item, location);
+
+        removeNode(Node node) => outer.removeNode(node);
+
+        shared actual
+        void setElement(Node node, Key->Item element) {
+            // TODO test this
+            outer.addNode(element.key, element.item, node);
+            outer.removeNode(node);
+        }
     };
 
     shared actual
