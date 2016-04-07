@@ -9,6 +9,12 @@ import ceylon.language {
     createMap=map
 }
 
+"Implementation of [[Multimap]] using hash tables.
+
+ The multimap does not store duplicate key->item pairs. Adding a new
+ key->item pair equal to an existing key->item pair has no effect.
+
+ Keys and items may be null."
 shared
 class HashMultimap<Key, Item>
         satisfies MutableSetMultimap<Key, Item>
