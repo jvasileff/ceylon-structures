@@ -22,7 +22,7 @@ import com.vasileff.ceylon.structures.internal {
  across non-distinct key items. For example, for the following multimap
  definition:
 
-     value multimap = LinkedListMultimap<K, I>.create();
+     value multimap = LinkedListMultimap<K, I>();
      multimap.put(key1, foo);
      multimap.put(key2, bar);
      multimap.put(key1, baz);
