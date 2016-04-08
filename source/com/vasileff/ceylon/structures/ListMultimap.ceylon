@@ -8,9 +8,6 @@ interface ListMultimap<Key, out Item>
     Set<Key> keys;
 
     shared actual formal
-    List<Item> items;
-
-    shared actual formal
     Map<Key, List<Item>> asMap;
 
     shared actual formal

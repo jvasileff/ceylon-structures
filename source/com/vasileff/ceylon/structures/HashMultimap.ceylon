@@ -206,7 +206,11 @@ class HashMultimap<Key, Item>
             return changed;
         }
 
-        clone() => createCollection { *this };
+        shared actual
+        MutableSet<Item> clone() {
+            refreshIfEmpty();
+            return createCollection { *this };
+        }
     };
 
     shared actual

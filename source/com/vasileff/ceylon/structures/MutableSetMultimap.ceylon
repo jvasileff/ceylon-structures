@@ -33,7 +33,7 @@ interface MutableSetMultimap<Key, Item>
     Boolean put(Key key, Item item)
         =>  get(key).add(item);
 
-    shared actual
+    shared actual default
     Boolean remove(Key key, Item item)
-        =>  defines(key) && get(key).remove(item);
+        =>  defines(key) && get(key).remove(item) != 0;
 }

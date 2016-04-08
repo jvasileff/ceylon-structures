@@ -25,4 +25,18 @@ interface MutableListMultimap<Key, Item>
 
     shared actual formal
     Map<Key, MutableList<Item>> asMap;
+
+    shared actual default
+    Boolean remove(Key key, Item item) {
+        if (defines(key)) {
+            value list = get(key);
+            if (exists item) {
+                return list.remove(item) != 0;
+            }
+            value oldSize = list.size;
+            list.prune();
+            return oldSize != list.size;
+        }
+        return false;
+    }
 }
