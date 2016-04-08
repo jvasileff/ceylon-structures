@@ -3,7 +3,8 @@ import ceylon.collection {
     HashMap,
     linked,
     HashSet,
-    unlinked
+    unlinked,
+    Stability
 }
 import ceylon.language {
     createMap=map
@@ -20,14 +21,36 @@ class HashMultimap<Key, Item>
         satisfies MutableSetMultimap<Key, Item>
         given Key satisfies Object given Item satisfies Object {
 
-    value backingMap = HashMap<Key, MutableSet<Item>> { stability = linked; };
+    Stability keyStability;
+
+    Stability itemStability;
+
+    // variable for now so we can set to null to save memory on backends that don't
+    // optimize class captures.
+    variable {<Key->Item>*}? initialEntries;
+
+    shared new (
+            "Determines whether a linked hash map with a stable iteration order will be used
+             for this multimap's keys, defaulting to [[linked]] (stable)."
+            Stability keyStability = linked,
+            "Determines whether a linked hash set with a stable iteration order will be used
+             for the items for each of this multimap's keys, defaulting to [[linked]]
+             (stable)."
+            Stability itemStability = linked,
+            {<Key->Item>*} entries = []) {
+        this.keyStability = keyStability;
+        this.itemStability = itemStability;
+        this.initialEntries = entries;
+    }
+
+    value backingMap = HashMap<Key, MutableSet<Item>> { stability = keyStability; };
 
     variable value totalSize = 0;
 
     size => totalSize;
 
     function createCollection({Item*} items = [])
-        =>  HashSet<Item> { stability = unlinked; elements = items; };
+        =>  HashSet<Item> { stability = itemStability; elements = items; };
 
     shared actual
     Boolean put(Key key, Item item) {
@@ -43,11 +66,11 @@ class HashMultimap<Key, Item>
         return true;
     }
 
-    shared
-    new ({<Key->Item>*} entries = []) {
-        for (key->item in entries) {
+    if (exists e = initialEntries) {
+        for (key->item in e) {
             put(key, item);
         }
+        initialEntries = null;
     }
 
     shared actual
@@ -183,7 +206,7 @@ class HashMultimap<Key, Item>
             return changed;
         }
 
-        clone() => HashSet { *this };
+        clone() => createCollection { *this };
     };
 
     shared actual
@@ -199,7 +222,7 @@ class HashMultimap<Key, Item>
     shared actual
     MutableSet<Key> keys => object satisfies MutableSet<Key> {
 
-        clone() => HashSet { *this };
+        clone() => HashSet { stability = keyStability; *this };
 
         contains(Object key) => backingMap.defines(key);
 
@@ -228,6 +251,7 @@ class HashMultimap<Key, Item>
         // bit screwy.
 
         // clone the items too, since they are live views into the multimap
+        // TODO stability?
         clone() => createMap(this.map((entry) => entry.key -> entry.item.clone()));
 
         defines(Object key) => backingMap.contains(key);
@@ -244,7 +268,13 @@ class HashMultimap<Key, Item>
     shared actual
     MutableSet<Key->Item> entries => object satisfies MutableSet<Key->Item> {
 
-        clone() => HashSet { *this };
+        clone() => HashSet {
+            stability = if (keyStability == linked
+                            || itemStability == linked)
+                        then linked
+                        else unlinked;
+            *this
+        };
 
         contains(Object element) => asMap.contains(element);
 
