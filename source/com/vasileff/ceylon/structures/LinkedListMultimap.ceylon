@@ -374,7 +374,7 @@ class LinkedListMultimap<Key, Item>
         // clone the items too, since they are live views into the multimap
         clone() => createMap(this.map((entry) => entry.key -> entry.item.clone()));
 
-        defines(Object key) => backingMap.contains(key);
+        defines(Object key) => backingMap.defines(key);
 
         keys => outer.keys;
 

@@ -7,6 +7,11 @@ interface ListMultimap<Key, out Item>
     shared actual formal
     Set<Key> keys;
 
+    // Ceylon bug? This is necessary for the return type to be non-null despite
+    // Multimap already providing this guarantee.
+    shared actual formal
+    List<Item> get(Key key);
+
     shared actual formal
     Map<Key, List<Item>> asMap;
 

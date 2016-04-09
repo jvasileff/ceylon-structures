@@ -258,7 +258,7 @@ class HashMultimap<Key, Item>
         // TODO stability?
         clone() => createMap(this.map((entry) => entry.key -> entry.item.clone()));
 
-        defines(Object key) => backingMap.contains(key);
+        defines(Object key) => backingMap.defines(key);
 
         keys => outer.keys;
 
