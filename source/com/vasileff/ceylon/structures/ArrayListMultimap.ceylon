@@ -268,9 +268,9 @@ class ArrayListMultimap<Key, Item>
         }
 
         shared actual
-        void replace(Item & Object element, Item replacement) {
+        Integer replace(Item & Object element, Item replacement) {
             refreshIfEmpty();
-            delegate.replace(element, replacement);
+            return delegate.replace(element, replacement);
         }
 
         shared actual
