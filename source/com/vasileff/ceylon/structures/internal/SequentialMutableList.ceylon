@@ -108,12 +108,15 @@ interface SequentialMutableList<Node, Element>
     }
 
     shared actual
-    void replace(Element&Object element, Element replacement) {
+    Integer replace(Element&Object element, Element replacement) {
+        variable value count = 0;
         for (node in nodeIterable()) {
             if (eq(this.getElement(node), element)) {
                 setElement(node, replacement);
+                count++;
             }
         }
+        return count;
     }
 
     shared actual
