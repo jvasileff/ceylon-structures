@@ -5,6 +5,10 @@
 
  Currently implemented types are:
 
+ * [[ArrayListMultimap]]: a mutable `Collection<Key->Item>` and
+   `Correspondence` from `Key` to `MutableList<Item>` that supports deterministic
+   iteration order for both keys and items.
+
  * [[LinkedListMultimap]]: a mutable `Collection<Key->Item>` and
    `Correspondence` from `Key` to `MutableList<Item>` that supports deterministic
    iteration order for both keys and items.

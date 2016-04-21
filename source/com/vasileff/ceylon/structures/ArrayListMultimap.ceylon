@@ -11,16 +11,21 @@ import ceylon.language {
     createMap=map
 }
 
-"Implementation of [[Multimap]] using hash tables.
+"Implementation of [[Multimap]] that uses an [[ArrayList]] to store
+ the items for a given key. A [[HashMap]] associates each key with an
+ [[ArrayList]] of items.
 
- The multimap does not store duplicate key->item pairs. Adding a new
- key->item pair equal to an existing key->item pair has no effect.
+ When iterating through the collections supplied by this class, the
+ ordering of items for a given key agrees with the order in which the items
+ were added.
 
- Keys and items may be null."
+ This multimap allows duplicate key-item pairs. After adding a new
+ key-item pair equal to an existing key-item pair, the `ArrayListMultimap`
+ will contain entries for both the new item and the old item."
 shared
 class ArrayListMultimap<Key, Item>
         satisfies MutableListMultimap<Key, Item>
-        given Key satisfies Object given Item satisfies Object {
+        given Key satisfies Object {
 
     Stability keyStability;
 
@@ -171,7 +176,7 @@ class ArrayListMultimap<Key, Item>
         }
 
         shared actual
-        Integer remove(Item element) {
+        Integer remove(Item & Object element) {
             value oldSize = beforeMutation();
             value result = delegate.remove(element);
             afterMutation(oldSize);
@@ -179,7 +184,7 @@ class ArrayListMultimap<Key, Item>
         }
 
         shared actual
-        Integer removeAll({Item*} elements) {
+        Integer removeAll({Item & Object*} elements) {
             value oldSize = beforeMutation();
             value count = delegate.removeAll(elements);
             afterMutation(oldSize);
@@ -247,7 +252,7 @@ class ArrayListMultimap<Key, Item>
         }
 
         shared actual
-        Boolean removeFirst(Item element) {
+        Boolean removeFirst(Item & Object element) {
             value oldSize = beforeMutation();
             value result = delegate.removeFirst(element);
             afterMutation(oldSize);
@@ -255,7 +260,7 @@ class ArrayListMultimap<Key, Item>
         }
 
         shared actual
-        Boolean removeLast(Item element) {
+        Boolean removeLast(Item & Object element) {
             value oldSize = beforeMutation();
             value result = delegate.removeLast(element);
             afterMutation(oldSize);
@@ -263,19 +268,19 @@ class ArrayListMultimap<Key, Item>
         }
 
         shared actual
-        void replace(Item element, Item replacement) {
+        void replace(Item & Object element, Item replacement) {
             refreshIfEmpty();
             delegate.replace(element, replacement);
         }
 
         shared actual
-        Boolean replaceFirst(Item element, Item replacement) {
+        Boolean replaceFirst(Item & Object element, Item replacement) {
             refreshIfEmpty();
             return delegate.replaceFirst(element, replacement);
         }
 
         shared actual
-        Boolean replaceLast(Item element, Item replacement) {
+        Boolean replaceLast(Item & Object element, Item replacement) {
             refreshIfEmpty();
             return delegate.replaceLast(element, replacement);
         }
