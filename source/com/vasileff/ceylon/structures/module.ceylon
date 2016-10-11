@@ -17,5 +17,5 @@
    `Correspondence` from `Key` to `MutableSet<Item>` that does not store duplicate
    `key->item` entries."
 module com.vasileff.ceylon.structures "1.1.0-SNAPSHOT" {
-    shared import ceylon.collection "1.3.1";
+    shared import ceylon.collection "1.3.1-SNAPSHOT";
 }
