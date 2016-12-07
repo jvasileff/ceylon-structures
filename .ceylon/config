@@ -1,3 +1,5 @@
-
 [defaults]
 encoding=UTF-8
+
+[compiler.jvm]
+target=7
