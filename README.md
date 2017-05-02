@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/jvasileff/ceylon-structures.svg?branch=master)](https://travis-ci.org/jvasileff/ceylon-structures)
 # Ceylon Structures
 A Supplementary Collections Module for [Ceylon](http://ceylon-lang.org).
 
