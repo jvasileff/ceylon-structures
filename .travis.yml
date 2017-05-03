@@ -18,8 +18,7 @@ install:
   - unzip /tmp/ceylon.zip
   - export PATH=$PATH:$PWD/ceylon-1.3.2/bin/
 script:
-  - ceylon compile
+  - ceylon compile && ceylon compile-js
 env:
   global:
     - CEYLON="http://ceylon-lang.org/download/dist/1_3_2"
-    - TEST_MODULE="test.com.vasileff.ceylon.model"
