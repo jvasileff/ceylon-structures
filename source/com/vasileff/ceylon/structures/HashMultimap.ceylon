@@ -4,7 +4,7 @@ import ceylon.collection {
     linked,
     HashSet,
     unlinked,
-    //Stability
+    Stability
 }
 import ceylon.language {
     createMap=map
