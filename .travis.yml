@@ -3,6 +3,7 @@ language: java
 addons:
   artifacts:
     debug: true
+    branch: master
     bucket: ceylon.vasileff.com
     target_paths: modules
     paths:
