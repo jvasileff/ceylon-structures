@@ -2,6 +2,8 @@ sudo: false
 language: java
 notifications:
   email: false
+  on_failure: always                                                                                                                            
+  on_success: change
   pushover:
     api_key:
       secure: cOz6J3l37jvUY7Rapomu0j+c0HAKRnfTYxIVLQwzHv3fEYIzaB9wQQwdZabuRXo5KPLlgaXPG3nKTeEwRCzsnFfBXMyADutEoaNMf0Sz3PzUQ+mRWI5APfJCkLJvB6IBuQYCThcuG+euseb4jy+1CsLNEWrQztDNAOUZnY9LyhGKnhNlm0Y07cVHkevFWSIJ2LL1WMSUvmSLzBpzeEaXFeLSnwTXmOJxFLbrfqOhoepK0QVBcULEX5oNnxMGepw9sWLHBCGcde4KCgZ5mAryUgNO+pWp+FmcbrL1K1eRP2tRe7/yLvlhklIgRN8sipeZdrL7s9oiv7ZXHZTa2eiYbHPyceYo2mGpr37MVuGu/udALFfJ4BAXrQoG95i7wk4vhfnNvRIo+Bq7v37DBgmSREbgOQPfw9q4No2i3FtnTI0XuDlVTyI9LSbRgMZ4XD6PrROH04Xkuy4Rwz4eeQklPi/IgV85aMOIv/JrfD8kgXWEij2QnrLjHl0tHfODS2AIpb3po8oTCJuSuPCY/p956XNoxLVl4EvfEV3vgz6HLcOMmCFaMBUOMuo/xE/exZZCnOhLnIizjLetVKeTsrRx7AIZakBFUHTJSpSBcPPi9+k2gY8irc6aKyvaJyDXRlUlNiQ4BatUks7OFC+6hb6Np5r1KeFAjbB+fQrQ9mGJqtU=
