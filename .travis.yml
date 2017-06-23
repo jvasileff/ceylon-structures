@@ -31,6 +31,7 @@ install:
   - wget --quiet --output-document=/tmp/sdk.zip "$CEYLON_SDK"
   - unzip -q /tmp/sdk.zip
   - echo -e "\n[repository \"sdk\"]\nurl=$PWD/archive/modules\n[repositories]\nlookup=+sdk" >> $TRAVIS_BUILD_DIR/.ceylon/config
+  - ceylon --version
 script:
   - ceylon compile,compile-js
 env:
