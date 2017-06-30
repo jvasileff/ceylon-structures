@@ -34,6 +34,7 @@ install:
   - ceylon --version
 script:
   - ceylon compile,compile-js
+  - ceylon doc --source-code
 env:
   global:
     - CEYLON_DIST="https://ci-ceylon.rhcloud.com/job/ceylon-distribution/lastSuccessfulBuild/artifact/*zip*/archive.zip"
