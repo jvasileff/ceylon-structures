@@ -16,6 +16,6 @@
  * [[HashMultimap]]: a mutable `Collection<Key->Item>` and
    `Correspondence` from `Key` to `MutableSet<Item>` that does not store duplicate
    `key->item` entries."
-module com.vasileff.ceylon.structures "1.1.2-SNAPSHOT" {
+module com.vasileff.ceylon.structures "1.1.3-SNAPSHOT" {
     shared import ceylon.collection "1.3.3-SNAPSHOT";
 }
