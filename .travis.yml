@@ -11,7 +11,8 @@ notifications:
       - secure: uqag/MZUNDDJp4W+iFf6X9ErJde2dvNoJVDV4mlMrFKohIxqir0MXKQa4G8bCU4bl9I7XZIwbhs5nI3sXtqsoO3CuQ564abKJyh7VnShKnJuc3Tw8iJjCUJHYVvg7Ic5gzyy0MdRuKcrqOzeE5Zc8V0UHS0HkBZ5wtICP4AfWl/5YP71vDFR6dQH+tVCscfsESRUaCY9YjxZ6OnSugimnwHKL01N42BtaSQL8unWpw7Lrqe0YLJ29YY5UxDvS6uwyhGuG2pL2uUtNttXdUKnEK4/rIJNB0g4656FbGiWXxBzh+hUWx5QSmvXlUoqCEfAKYE84n9h1EWegh+0uNuYc+S5cDV3rcKv23uKq4PwQyMSu2AVSMoXuVP1P7wcFb8N/IRiZcz8tZ8WEpu2Grac+MNuzojKdiMwgRn6NPDkqJ11jQYuJ8+9yca4I1UdAwHHvXDd3AaxEYlG3gKn4j03SnZfahKXhx8kRk+2zeR5UiLbQLBYCASsPuPjkK2K7c5Gi6LlOiZShb5aqg3aJcvzAd+/R8Mm/ZuCA3P4GMksMHxz4qN/h/t6GtQWUaPGTW0SZTjOrTpS7spnHF1lZgoMWLbK47xwZRrPg+hL9hyWteH1nIL3kQdRWF0TV5R34NQd91POaukFvSs5yuL2+kdiXl28Iko64BvLWsAPpxuh13U=
 addons:
   artifacts:
-    branch: master
+    branch:
+      - master
     bucket: ceylon.vasileff.com
     target_paths: modules
     paths:
